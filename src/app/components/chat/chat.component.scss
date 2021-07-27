@@ -1,0 +1,32 @@
+.mainContent {
+    
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5vh;
+}
+
+.feedWrapper {
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.05);
+
+    height: 75%;
+    border-radius: 0.2em;
+    position: relative;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
+}
+
+.chatFormWrapper {
+   position: relative;
+   background-color: #f1f1f1;
+   border-radius: 5px;
+   padding: 10px;
+
+}
+
+// #scroll-style::-webkit-scrollbar-track
+// {
+// 	border-radius: 10px;
+// 	background-color: #62f500;
+// }

@@ -1,0 +1,18 @@
+{
+  "targets": {
+    "minibio-firebase": {
+      "hosting": {
+        "proyectofinal": [
+          "minibio-firebase"
+        ]
+      }
+    },
+    "proyecto-final-a8b18": {
+      "hosting": {
+        "proyectofinal": [
+          "proyecto-final-a8b18"
+        ]
+      }
+    }
+  }
+}

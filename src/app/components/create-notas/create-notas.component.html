@@ -1,0 +1,79 @@
+<app-navbar> </app-navbar>
+<div class="container mt-4">
+  <!-- Contenido -->
+  <div class="row justify-content-center">
+    <div class="col-md-7 col-xl-5">
+      <div class="mcard">
+        <h1>Crea tu post</h1>
+        <form [formGroup]="bioForm" class="form-floating mt-4">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              formControlName="title"
+            />
+            <label for="floatingInput">Titulo</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              maxlength="200"
+              formControlName="description"
+            />
+            <label for="floatingInput">Descripcion</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="floatingInput"
+              formControlName="text"
+            />
+            <label for="floatingInput">Contenido</label>
+          </div>
+
+          <!-- <img *ngIf="downloadURL || mainImage" [src]="(downloadURL | async) || mainImage" class="img-thumbnail" alt="..."> -->
+
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Imagen de perfil</label>
+            <input
+              class="form-control"
+              (change)="readUrl($event)"
+              type="file"
+              id="formFile"
+            />
+          </div>
+
+          <img [src]="url" />
+
+          <!-- Barra de progreso -->
+          <div class="progress mt-2">
+            <div
+              class="progress-bar progress-bar-striped bg-info"
+              role="progressbar"
+              [ngStyle]="{'width': percent + '%' }"
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+
+          <!--
+                    <div class="progress mt-1 mb-3">
+                        <div class="progress-bar" role="progressbar" [ngStyle]="{'width': percent + '%' }" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div> 
+                -->
+          <button type="button" class="btn btn-save" (click)="savePost()">
+            Guardar
+          </button>
+          <button type="button" class="btn btn-save">Actualizar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

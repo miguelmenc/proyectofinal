@@ -1,0 +1,11 @@
+<div class="container">
+  <input
+    class="chat__input"
+    [(ngModel)]="message"
+    (keydown)="handleSubmit($event)"
+  />
+  <button class="chat__button btn btn-secondary" (click)="send()">
+    Send
+  </button>
+ 
+</div>

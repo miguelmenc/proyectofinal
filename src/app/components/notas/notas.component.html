@@ -1,0 +1,41 @@
+<app-navbar> </app-navbar>
+<div class="container">
+  <button class="btn mt-4 btn-dark" routerLink="/create-notas"> Redactar </button>
+</div>
+<div class="post__container">
+  <div class="post__item" *ngFor="let post of allPost">
+    <a [routerLink]="['/post-content', post.id]">
+    <img
+          [src]="post.image"
+          class="post__img"
+          alt="..."
+        />
+      <h3> {{post.title}} </h3>
+      <p> {{post.description}}</p>
+    </a>
+  </div>
+</div>
+<!--
+<div class="container-fluid">
+  <div class="container">
+    <button class="btn mt-4 btn-dark" routerLink="/create-notas"> Redactar </button>
+  </div>
+    <div class="gallery-container mt-3">
+      
+      <div class="gallery__item" style="width: 18rem" *ngFor="let post of allPost" >
+        <button [routerLink]="['/post-content', post.id]">
+        <img
+          [src]="post.image"
+          class="gallery__img"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{post.title}}</h5>
+          <p class="card-text text-break ">{{post.description}}</p>
+        </div> 
+        </button>
+      </div>
+    </div>
+  </div>
+  -->
+

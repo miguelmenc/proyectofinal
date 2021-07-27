@@ -1,0 +1,151 @@
+<app-navbar> </app-navbar>
+
+<div
+  *ngIf="game"
+  class="container-fluid"
+  [ngStyle]="{ 'background-image': 'url(' + game.UrlImgFondo + ')' }"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-3 col-md-3 col-xl-3 dismenuizq">
+        <img [src]="game.UrlImgPortada" class="d-block w-100" alt="..." />
+      </div>
+      <div class="col-12 col-lg-9 col-md-9 col-xl-9 dismenuderc">
+        <h3>{{ game.nombre }}</h3>
+        <p class="textnegrita">{{ game.desarolladora }} | {{ game.genero }}</p>
+        <p>
+          Fecha de lanzamiento:
+          <span> {{ game.fechaLanzamiento }} | {{ game.plataforma }} </span>
+        </p>
+        <p>
+          {{ game.descripcion }}
+        </p>
+        <p>Nota de la critica en metacritic: {{ game.valoracion }} / 100</p>
+      </div>
+    </div>
+    <!-- Submenu -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link active"
+          id="galeria-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#galeria"
+          type="button"
+          role="tab"
+          aria-controls="galeria"
+          aria-selected="true"
+        >
+          Galeria
+        </button>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <button
+          class="nav-link"
+          id="trailer-tab"
+          data-bs-toggle="tab"
+          data-bs-target="#trailer"
+          type="button"
+          role="tab"
+          aria-controls="trailer"
+          aria-selected="false"
+        >
+          trailer
+        </button>
+      </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+      <div
+        *ngIf="game"
+        class="tab-pane fade show active"
+        id="galeria"
+        role="tabpanel"
+        aria-labelledby="galeria-tab"
+      >
+        <div class="content-img">
+          <div
+            id="carouselExampleIndicators"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img [src]="game.img1" class="d-block w-100" alt="..." />
+              </div>
+              <div class="carousel-item">
+                <img [src]="game.img2" class="d-block w-100" alt="..." />
+              </div>
+              <div class="carousel-item">
+                <img [src]="game.img3" class="d-block w-100" alt="..." />
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="game"
+        class="tab-pane fade"
+        id="trailer"
+        role="tabpanel"
+        aria-labelledby="trailer-tab"
+      >
+        <iframe
+          [src]="game.video | pipe"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>

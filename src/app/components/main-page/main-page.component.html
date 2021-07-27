@@ -1,0 +1,39 @@
+<app-navbar> </app-navbar>
+
+<!-- Buscador -->
+<div class="container mt-4">
+  <mat-form-field>
+    <input
+      [formControl]="search"
+      matInput
+      placeholder="Búsqueda"
+      [(ngModel)]="busqueda.nombre"
+      (keyup)="buscar()"
+    />
+  </mat-form-field>
+</div>
+
+<!-- Lista de juegos -->
+<div class="gallery-container">
+  <div
+    class="gallery__item"
+    *ngFor="
+      let game of gamesBuscador | paginate: { itemsPerPage: 15, currentPage: page }
+    "
+  >
+    <a [routerLink]="['/page-content', game.uid]">
+      <img [src]="game.UrlImgPortada" alt="" class="gallery__img" />
+      <h2 class="gallery__title">{{ game.nombre }}</h2>
+    </a>
+  </div>
+</div>
+
+<!-- Paginador -->
+<div class="paginacion">
+  <pagination-controls
+    (pageChange)="page = $event"
+    previousLabel="Anterior"
+    nextLabel="Siguiente"
+    
+  ></pagination-controls>
+</div>

@@ -1,0 +1,36 @@
+.container {
+    flex-direction: row;
+}
+.chat__input {
+    width: 80%;
+    padding: 8px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.chat__input:focus {
+    background-color: #929292;
+    color: white;
+    transition: 0.2s ease-in;
+}
+
+.chat__button {
+    // boton
+    width: 20%;
+    padding: 6px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: lightseagreen;
+    transition: 0.2s ease-out;
+}
+
+.chat__button:hover {
+    background-color: lightyellow;
+    color: black;
+}

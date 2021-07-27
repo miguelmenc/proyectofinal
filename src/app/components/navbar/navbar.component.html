@@ -1,0 +1,92 @@
+<div class="sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" routerLink="/">Skil Connect</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" routerLinkActive="active">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/chat">Chat General</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/notas">Post</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Help
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="https://www.playstation.com/es-es/support/?smcid=pdc%3Aes-es%3Aprimary%20nav%3Amsg-support%3Aasistencia"
+                  target="_blank"
+                  >PlayStation</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="https://support.xbox.com/es-ES/"
+                  target="_blank"
+                  >Xbox</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="https://help.steampowered.com/es/"
+                  target="_blank"
+                  >Steam</a
+                >
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/informacion-legal"
+                  >Información legal</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <div *ngIf="!inicio_sesion" (click)="login()" class="boton">
+            <a class="btn btn-dark" routerLink="/login"> Inicio Sesión</a>
+          </div>
+          <div *ngIf="inicio_sesion" class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {{ user.displayName }}
+              <img [src]="user.photoURL" alt="foto de perfil" />
+            </button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
