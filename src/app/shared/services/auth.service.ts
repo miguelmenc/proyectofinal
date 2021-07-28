@@ -135,7 +135,7 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['chat']);
+          this.router.navigate(['/']);
         });
         this.setUserDataExample(result.user);
       }).catch((error) => {

@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
   loginGoogle() {
     this.authService.googleAuth().then(() => {
-      this.router.navigate(['/chat'])
+      this.router.navigate(['/'])
     }).catch(() => {
       console.error("Error en el login")
     })
