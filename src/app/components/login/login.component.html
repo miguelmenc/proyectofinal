@@ -1,43 +1,76 @@
 <div class="container">
   <div class="loginCard">
-
     <h2 class="heading">Log In</h2>
-    <input [(ngModel)]="email" type="email" name="email" class="formInput" />
-    <input type="password" [(ngModel)]="password" name="password" class="formInput" />
-    <button class="btn" id="btn-login" (click)="loginInExample()">
+    <input
+      [(ngModel)]="email"
+      type="email"
+      name="email"
+      class="formInput"
+      placeholder="Email"
+    />
+    <input
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      class="formInput"
+      placeholder="Password"
+    />
+    <button class="btn mt-3" id="btn-login" (click)="loginInExample()">
       Log In
     </button>
-    <button (click)="loginGoogle()" class="btn btn-primary"> conecta con google </button>
-     
-    
-    <p>No tienes Cuenta? </p> 
-    <button href="#" id="clickMe" class=" btn btn-secondary" (click)="clickMe()" >Registrate </button>
-  </div> 
-  
-  <div class="signUpCard" id="newCard" aria-hidden="false" style="display:none" >
+    <button (click)="loginGoogle()" class="btn btn-danger mt-3">
+      <img
+        src="https://firebasestorage.googleapis.com/v0/b/proyecto-final-a8b18.appspot.com/o/Animal%20Crossing%3A%20New%20Horizons%2Fgoogle-logo.png?alt=media&token=d93423a2-8d6e-4a2b-9768-e41f119c7958"
+        class="logo"
+      />
+      Google
+    </button>
+
+    <p class="mt-2">No tienes Cuenta?</p>
+    <button href="#" id="clickMe" class="btn btn-secondary" (click)="clickMe()">
+      Registrate
+    </button>
+  </div>
+
+  <div
+    class="signUpCard"
+    id="newCard"
+    aria-hidden="false"
+    style="display: none"
+  >
     <form #signupForm="ngForm">
-     <h2 class="heading">Sign Up</h2>
- 
-     <label class="label">Email</label>
-        <input 
-        type="email" name="emails"
-        placeholder="Enter your email address" 
-        [(ngModel)]="emailS" class="formInputt"
-        maxlength="60" required/>
- 
-     <label class="label">Password</label>
-       <input 
-         type="password" name="password"
-         placeholder="Choose a password" 
-         [(ngModel)]="passwordS" class="formInputt" 
-         required/>
- 
-    
-       <button [disabled]="!signupForm.form.valid" 
-               type="submit" (click)="signUpExample()"
-               class="btnn" id="btnn-signUp">
-               Sign Up
-       </button>
-     </form>
-   </div>
+      <h2 class="heading">Sign Up</h2>
+
+      <label class="label">Email</label>
+      <input
+        type="email"
+        name="emails"
+        placeholder="Enter your email address"
+        [(ngModel)]="emailS"
+        class="formInputt"
+        maxlength="60"
+        required
+      />
+
+      <label class="label">Password</label>
+      <input
+        type="password"
+        name="password"
+        placeholder="Choose a password"
+        [(ngModel)]="passwordS"
+        class="formInputt"
+        required
+      />
+
+      <button
+        [disabled]="!signupForm.form.valid"
+        type="submit"
+        (click)="signUpExample()"
+        class="btnn"
+        id="btnn-signUp"
+      >
+        Sign Up
+      </button>
+    </form>
+  </div>
 </div>

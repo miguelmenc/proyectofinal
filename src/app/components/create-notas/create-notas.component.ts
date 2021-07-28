@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { PostService } from 'src/app/shared/services/post.service';
 import { finalize } from 'rxjs/operators';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-create-notas',
@@ -19,7 +20,7 @@ export class CreateNotasComponent implements OnInit {
   uploadPercent: Observable<any> | undefined;
   downloadURL!: Observable<string> | undefined;
   percent = 0;
-  url: any = "";
+  url: any = '';
   mainImage?: string;
 
   constructor(
@@ -27,7 +28,8 @@ export class CreateNotasComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute, //preguntar con el fireauthguard
-    private postService: PostService
+    private postService: PostService,
+    private notifier: NotifierService
   ) {
     this.bioForm = this.fb.group({
       title: ['', Validators.required],
@@ -41,6 +43,7 @@ export class CreateNotasComponent implements OnInit {
 
   get f() {
     return this.bioForm.controls;
+
   }
   savePost() {
     // if(this.bioForm.invalid) {
@@ -50,7 +53,23 @@ export class CreateNotasComponent implements OnInit {
 
     // console.log("Guardar minibio", this.bioForm.value)
 
-    this.postService.createPost(this.bioForm.value, JSON.parse(localStorage.getItem('user')).uid );
+    if(this.bioForm.invalid) {
+      this.notifier.notify('error', 'Los datos no son válidos');
+      return
+    }
+
+    this.postService
+      .createPost(
+        this.bioForm.value,
+        JSON.parse(localStorage.getItem('user')).uid
+      )
+      .then((success) => {
+        this.notifier.notify('success', 'Post creado');
+        this.router.navigate(['notas']);
+      })
+      .catch((error) => {
+        this.notifier.notify('error', 'Ha ocurrido un error');
+      });
     this.router.navigate(['notas']);
 
     // this.minibioService.createMinibio(this.bioForm.value).then(success => {
@@ -66,12 +85,9 @@ export class CreateNotasComponent implements OnInit {
     //   this.notifier.notify('error', 'Los datos no son válidos');
     //   return
     // }
-
     // console.log("Actualizar minibio", this.bioForm.value)
-
     // this.postService.updatePost(this.bioId, this.bioForm.value);
     // this.router.navigate(['notas']);
-
     // this.minibioService.updateMinibio(this.bioId,  this.bioForm.value).then(success => {
     //   this.notifier.notify('success', "Actualizado");
     //   this.router.navigate(['/profile']);
@@ -80,69 +96,40 @@ export class CreateNotasComponent implements OnInit {
     // })
   }
 
-
-    readUrl(event:any) {
-      const file = event.target.files[0];
+  readUrl(event: any) {
+    const file = event.target.files[0];
     const filePath = Date.now() + `ImagenesUsers/`;
     const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(filePath, file)
+    const task = this.storage.upload(filePath, file);
 
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
 
-      
-      if (event.target.files && event.target.files[0]) {
-        var reader = new FileReader();
-    
-        reader.onload = (event: ProgressEvent) => {
-          this.url = (<FileReader>event.target).result;
-        }
-    
-        reader.readAsDataURL(event.target.files[0]);
-      }
+      reader.onload = (event: ProgressEvent) => {
+        this.url = (<FileReader>event.target).result;
+      };
 
-      // observe percentage changes
-    task.percentageChanges().subscribe(number => {
-      this.percent = number!
-    })
+      reader.readAsDataURL(event.target.files[0]);
+    }
+
+    // observe percentage changes
+    task.percentageChanges().subscribe((number) => {
+      this.percent = number!;
+    });
     // get notified when the download URL is available
-    task.snapshotChanges().pipe(
-        finalize(() => {
-          this.downloadURL = fileRef.getDownloadURL()
-
-          this.downloadURL.subscribe(data => {
-            this.bioForm.patchValue({
-              image: data
-            })
-          })
-
-        })
-     )
-    .subscribe()
-  }
-}
-    /*
-    const file = event.target.files[0];
-    const filePath = `ImagenesUsers/${n}`;
-    const fileRef = this.storage.ref(filePath);
-    const task = this.storage.upload(`ImagenesUsers/${n}`, file);
     task
       .snapshotChanges()
       .pipe(
         finalize(() => {
           this.downloadURL = fileRef.getDownloadURL();
-          this.downloadURL.subscribe((url) => {
-            if (url) {
-              this.ss = url;
-            }
-            console.log(this.ss);
+
+          this.downloadURL.subscribe((data) => {
+            this.bioForm.patchValue({
+              image: data,
+            });
           });
         })
       )
-      .subscribe((url: any) => {
-        if (url) {
-          console.log(url);
-        }
-      });
+      .subscribe();
   }
-  */
-
-
+}

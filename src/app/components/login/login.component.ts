@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
@@ -13,8 +14,7 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
   errorMsg: string;
-  constructor(private router: Router,
-    public authService: AuthService) { }
+  constructor(private router: Router, private notifier: NotifierService, public authService: AuthService) { }
 
   ngOnInit(): void {
 
@@ -32,9 +32,15 @@ export class LoginComponent implements OnInit {
     this.authService.singInEmailPassword(this.email, this.password)
   }
   signUpExample() {
-    this.authService.singUpEmailPassword(this.emailS, this.passwordS)
+    this.authService.singUpEmailPassword(this.emailS, this.passwordS).then(success => {
+      this.notifier.notify('success', "Usuario creado correctamente");
+    }).catch(error => {
+      this.notifier.notify('error', "Ha habido un error, intentalo de nuevo")
+    })
 
   }
+
+
 
 
   clickMe() {

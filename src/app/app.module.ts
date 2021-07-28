@@ -9,7 +9,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { PageContentComponent } from './components/page-content/page-content.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { ChatMessComponent } from './components/chat/chat-mess/chat-mess.component';
+import { MessageComponent } from './components/chat/chat-mess/message/message.component';
+import { MessageInputComponent } from './components/chat/message-input/message-input.component';
+import { UserListComponent } from './components/chat/user-list/user-list.component';
+import { UserItemComponent } from './components/chat/user-list/user-item/user-item.component'; // <-- import the module
 import { CarruselComponent } from './components/carrusel/carrusel.component';
+import { LoginComponent } from './components/login/login.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { ContentPostComponent } from './components/content-post/content-post.component';
+import { PoliticsComponent } from './components/politics/politics.component';
 
 // firebase
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -36,22 +46,16 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { NotasComponent } from './components/notas/notas.component';
 import { CreateNotasComponent } from './components/create-notas/create-notas.component';
 
+// angular notifier
+import { NotifierModule } from 'angular-notifier';
 
-import { PipePipe } from './shared/pipes/pipe.pipe';
-import { ChatComponent } from './components/chat/chat.component';
-import { ChatMessComponent } from './components/chat/chat-mess/chat-mess.component';
-import { MessageComponent } from './components/chat/chat-mess/message/message.component';
-import { MessageInputComponent } from './components/chat/message-input/message-input.component';
-import { UserListComponent } from './components/chat/user-list/user-list.component';
-import { UserItemComponent } from './components/chat/user-list/user-item/user-item.component'; // <-- import the module
+
+// servicios
 import { AuthService } from './shared/services/auth.service';
 import { ChatService } from './shared/services/chat.service';
-import { LoginComponent } from './components/login/login.component';
-import { SigninComponent } from './components/signin/signin.component';
-import { ContentPostComponent } from './components/content-post/content-post.component';
-import { PoliticsComponent } from './components/politics/politics.component';
 
-
+// pipe "Video de youtube"
+import { PipePipe } from './shared/pipes/pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -93,6 +97,9 @@ import { PoliticsComponent } from './components/politics/politics.component';
     NgxPaginationModule,
     MatPaginatorModule,
     MatInputModule,
+    NotifierModule.withConfig({
+      
+    })
     
     
   ],

@@ -2,7 +2,7 @@
     flex-direction: row;
 }
 .chat__input {
-    width: 80%;
+    width: 85%;
     padding: 8px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -12,14 +12,14 @@
 }
 
 .chat__input:focus {
-    background-color: #929292;
-    color: white;
+    background-color: #fff;
+    color: #000;
     transition: 0.2s ease-in;
 }
 
 .chat__button {
     // boton
-    width: 20%;
+    width: 15%;
     padding: 6px 20px;
     margin: 8px 0;
     display: inline-block;
